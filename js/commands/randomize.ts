@@ -26,7 +26,7 @@ function writeRom(fileData: ArrayBuffer, game: Game) {
 
 export default async function randomize(seed: string, options: {}, file: Blob) {
   if (!seed.match(/^[a-zA-Z\d]{10}$/)) {
-    throw new Error('The must have 10 char with only letters and digits');
+    throw new Error('The seed must have 10 char with only letters and digits');
   }
   try {
     const importedGameArrayBuffer = file.arrayBuffer();
