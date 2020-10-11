@@ -5,15 +5,15 @@
   "keywords": [
     "lawn",
     "mower",
-    "randomized"
+    "Randomizer"
   ],
-  "homepage": "https://moliman22.github.io/lawnmower-randomizer",
+  "homepage": "https://moliman.github.io/LawnMower-Randomizer/",
   "license": "MIT",
   "author": "",
   "scripts": {
     "start": "parcel serve index.html --out-dir dist-debug",
     "build": "parcel build index.html --out-dir dist",
-    "deploy": "parcel build index.html --out-dir dist && gh-pages -d dist",
+    "deploy": "parcel build index.html --out-dir dist --public-url ./ && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
