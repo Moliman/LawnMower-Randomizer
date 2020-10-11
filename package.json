@@ -1,5 +1,5 @@
 {
-  "name": "lawn-mover-randomizer",
+  "name": "lawn-mower-randomizer",
   "version": "0.0.1",
   "description": "",
   "keywords": [
@@ -7,7 +7,7 @@
     "mower",
     "randomized"
   ],
-  "homepage": "https://moliman22.github.io/lawn-mover-randomizer",
+  "homepage": "https://moliman22.github.io/lawnmower-randomizer",
   "license": "MIT",
   "author": "",
   "scripts": {
