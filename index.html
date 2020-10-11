@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
 
 
   <meta name="theme-color" content="#fafafa">
@@ -29,7 +30,7 @@
     <h1>Lawn Mower randomizer</h1>
     <div id="notification" class="alert alert-primary invisible" role="alert">
     </div>
-    <form>
+    <form class="mb-3">
       <div class="form-group">
         <label for="txt-seed">Seed</label>
         <input id="txt-seed" type="text" class="form-control" placeholder="">
@@ -42,6 +43,15 @@
       </div>
       <button id="btn-submit" disabled type="button" class="btn btn-primary">Download</button>
     </form>
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="row">
+        <div class="col-12 col-md">
+          <a href="https://twitter.com/Moliman22"><i class="fab fa-twitter" style="color: deepskyblue;"></i></a>
+          <a href="https://www.twitch.tv/moliman22"><i class="fab fa-twitch" style="color: purple;"></i></a>
+          <small class="d-block mb-3 text-muted">Made by Moliman</small>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
