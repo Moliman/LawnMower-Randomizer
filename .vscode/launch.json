@@ -7,14 +7,12 @@
     {
       "name": "Launch Chrome",
       "request": "launch",
-      "type": "chrome",
+      "type": "msedge",
       "url": "http://localhost:1234",
       "webRoot": "${workspaceFolder}",
-      "breakOnLoad": true,
       "sourceMapPathOverrides": {
         "../*": "${webRoot}/*"
-      },
-      "runtimeExecutable": "C:\\Program Files (x86)\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
+      }
     },
   ]
 }
