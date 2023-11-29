@@ -13,7 +13,7 @@
   "scripts": {
     "watch": "parcel serve index.html --out-dir dist-debug",
     "build-release": "parcel build index.html --out-dir dist-release/latest --public-url ./ --no-source-maps",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist-release",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
