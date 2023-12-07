@@ -3,6 +3,7 @@ import { seedRandomUInt31 } from '../helpers/seedrandom';
 import Lawn from './Lawn';
 import * as El from './Elements';
 import RandomizerOption from './RandomizerOptions';
+import lawnsAddress from './LawnsAddress';
 
 class Game {
   lawns: Lawn[]
@@ -13,11 +14,17 @@ class Game {
 
   static getLawnFromJSon(jsonObject: any) {
     const game = new Game();
-    jsonObject.Lawns.forEach((lawn) => {
-      const els = lawn.elements.map((jsonElId) => El.elements.find((x) => x.id === jsonElId));
-      const newLawn = new Lawn(els, lawn.address);
+    for (let i = 1; i < 11; i++) {
+      const lawnElements = jsonObject[i];
+      const els = lawnElements.map((jsonElId) => El.elements.find((x) => x.id === jsonElId));
+      const newLawn = new Lawn(els, lawnsAddress[i]);
       game.lawns.push(newLawn);
-    });
+    }
+    // jsonObject.forEach((lawnElements, lawnNumber) => {
+    //   const els = lawnElements.map((jsonElId) => El.elements.find((x) => x.id === jsonElId));
+    //   const newLawn = new Lawn(els, lawnsAddress[lawnNumber]);
+    //   game.lawns.push(newLawn);
+    // });
     return game;
   }
 
@@ -30,15 +37,18 @@ class Game {
       const rockCount = lawn.elementsMap.get(El.Roc).length;
       lawn.cleanButKeepOob();
 
-      const lawnPosX = lawn.getInBoundCoordinateX()[0]
+      // Set Mow position
+
+      const mowPosX = lawn.getInBoundCoordinateX()[0]
       + (seedRandomUInt31(rngSeed)
       % (lawn.getInBoundCoordinateX()[1] - lawn.getInBoundCoordinateX()[0]));
 
-      const lawnPosY = lawn.getWidthWithOOB() * (seedRandomUInt31(rngSeed)
+      const mowPosY = lawn.getWidthWithOOB() * (seedRandomUInt31(rngSeed)
       % lawn.getHeightWithOOB());
 
-      lawn.setElementAtIndex(lawnPosX + lawnPosY, El.Mow);
+      lawn.setElementAtIndex(mowPosX + mowPosY, El.Mow);
 
+      // Set everything else position
       while (grassCount > lawn.elementsMap.get(El.Gra).length) {
         this.fill(lawn, El.Gra, rngSeed);
       }

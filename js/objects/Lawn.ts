@@ -75,6 +75,10 @@ export default class Lawn {
     return x + y * this.getWidthWithOOB();
   }
 
+  getTotalGrass() {
+    return this.elementsMap.get(El.Gra)?.length || -1;
+  }
+
   setElementAtIndex(arrayNumber: number, el: El.Elements) {
     const oldEl = this.elements[arrayNumber];
     this.elements[arrayNumber] = el;

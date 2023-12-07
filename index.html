@@ -14,20 +14,27 @@
     <h1>Lawn Mower randomizer</h1>
     <div id="notification" class="alert alert-primary invisible" role="alert">
     </div>
-    <form class="mb-3">
+    <form class="mb-5">
       <div class="form-group">
         <label for="txt-seed">Seed</label>
         <input id="txt-seed" type="text" class="form-control" placeholder="">
       </div>
+      <a id="get-vanilla-board" href="./static/LawnsVanilla.json_" download="LawnsVanilla.json"><small>Get vanilla board</small></a>
+      <div class="form-group input-group mb-3">
+        <div id="lawn-mower-lawns-drop" class="custom-file">
+          <input id="file-lm-lawns" type="file" class="custom-file-input">
+          <label id="file-lm-lawns-label" class="custom-file-label" for="file-lm-lawns"></label>
+        </div>
+      </div>
       <div class="form-group input-group mb-3">
         <div id="lawn-mower-rom-drop" class="custom-file">
           <input id="file-lm-rom" type="file" class="custom-file-input">
-          <label class="custom-file-label" for="lm-rom">Drop Lawn Mower rom here</label>
+          <label id="file-lm-rom-label" class="custom-file-label" for="lm-rom"></label>
         </div>
       </div>
       <button id="btn-submit" disabled type="button" class="btn btn-primary">Download</button>
     </form>
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <footer class="mt-5 border-top">
       <div class="row">
         <div class="col-12 col-md">
           <small class="d-block mb-1 text-muted">Made by Moliman</small>

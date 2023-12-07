@@ -1,9 +1,10 @@
 /**
  *
- * @param {Blob} blob
+ * @param {BlobPart} data Can be string | BufferSource | Blob
  * @param {string} name
  */
-export function downloadBlob(blob, name) {
+export function downloadFile(data, name) {
+  const blob = new Blob([data]);
   const link = document.createElement('a');
   const url = URL.createObjectURL(blob);
   link.setAttribute('href', url);

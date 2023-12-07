@@ -1,11 +1,11 @@
 import * as El from '../objects/Elements';
 import Game from '../objects/Game';
-import * as vanillaGameJson from '../objects/vanillaGame.json';
 import log1dArray from '../helpers/debug';
 
 function writeRom(fileData: ArrayBuffer, game: Game) {
   const lawnMowerRomData = new DataView(fileData);
   const offsetLevelData = 0x58;
+  const grassCountOffset = 0x5B;
   game.lawns.forEach((lawn, temp) => {
     log1dArray(lawn.elements.map((el) => el.nameShort), 32);
     const levelAddress = lawn.address;
@@ -21,6 +21,7 @@ function writeRom(fileData: ArrayBuffer, game: Game) {
     const mowCoordinate = lawn.getCoordinateFromIndex(lawn.elements.findIndex((x) => x === El.Mow));
     lawnMowerRomData.setUint8(levelAddress + offsetLevelData + 1, mowCoordinate[0]);
     lawnMowerRomData.setUint8(levelAddress + offsetLevelData + 2, mowCoordinate[1] + 3);
+    lawnMowerRomData.setUint8(levelAddress + grassCountOffset, lawn.getTotalGrass());
   });
 }
 
@@ -29,13 +30,17 @@ export default async function randomize(seed: string, options: {}, file: Blob) {
     throw new Error('The seed must have 10 char with only letters and digits');
   }
   try {
+    const boardsStr = await options.boards.text();
+    const boards = JSON.parse(boardsStr);
+
+    // TODO: EVERYTHING, INCLUDING THE VANILLA BOARD MUST USE THE JSON CONVERTION!!!!
     const importedGameArrayBuffer = file.arrayBuffer();
-    const vanillaGame = Game.getLawnFromJSon(vanillaGameJson);
+    const vanillaGame = Game.getLawnFromJSon(boards);
     const randomizedGame = vanillaGame.randomize(seed, null);
     // const randomizedGame = usedAlgorithm.randomize(seed, vanillaGame);
     writeRom(await importedGameArrayBuffer, randomizedGame);
     return importedGameArrayBuffer;
-  } catch {
-    throw new Error('Can\'t randomize this rom');
+  } catch (e) {
+    throw new Error(e);
   }
 }
