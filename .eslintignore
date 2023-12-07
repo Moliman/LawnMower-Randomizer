@@ -1,2 +1,2 @@
-js/vendor/
-js/plugins.js
+dist-release/*
+dist-debug/*

@@ -54,7 +54,7 @@ async function getVanillaBoard() {
 // });
 
 btnSubmit.addEventListener('click', async (ev) => {
-  setAlert('primary', 'Randomizing... please wait!', notification);
+  setAlert('primary', 'Generating... please wait!', notification);
   try {
     const boards = lmBoard.files?.length ? lmBoard.files[0] : await getVanillaBoard();
     const lmRomRando = randomize(txtSeed.value, { boards: boards }, lmRom.files[0]);

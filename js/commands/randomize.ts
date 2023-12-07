@@ -26,17 +26,17 @@ function writeRom(fileData: ArrayBuffer, game: Game) {
 }
 
 export default async function randomize(seed: string, options: {}, file: Blob) {
-  if (!seed.match(/^[a-zA-Z\d]{10}$/)) {
+  if (seed !== '' && !seed.match(/^[a-zA-Z\d]{10}$/)) {
     throw new Error('The seed must have 10 char with only letters and digits');
   }
   try {
     const boardsStr = await options.boards.text();
     const boards = JSON.parse(boardsStr);
 
-    // TODO: EVERYTHING, INCLUDING THE VANILLA BOARD MUST USE THE JSON CONVERTION!!!!
+    // TODO: EVERYTHING, INCLUDING THE VANILLA BOARD MUST USE THE JSON CONVERSION!!!!
     const importedGameArrayBuffer = file.arrayBuffer();
     const vanillaGame = Game.getLawnFromJSon(boards);
-    const randomizedGame = vanillaGame.randomize(seed, null);
+    const randomizedGame = seed === '' ? vanillaGame : vanillaGame.randomize(seed, null);
     // const randomizedGame = usedAlgorithm.randomize(seed, vanillaGame);
     writeRom(await importedGameArrayBuffer, randomizedGame);
     return importedGameArrayBuffer;
